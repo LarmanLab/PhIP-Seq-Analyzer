@@ -1,4 +1,3 @@
-# PhIP-Seq-Analyzer
 
 
 #########################
@@ -43,21 +42,24 @@ The folders known as ./test_human and ./test_virus would be created, of which ha
 Note: the pipeline only accept the absolute path of a directory or file
 
 
-Example 2:  trim nucleotides when demultiplexing, for example
-trim 10nt from 3-end:      					-t 0:10
-trim 5nt from 5-end and 10nt from 3-end:  	-t 5:10
-So the command would like:
-$ python3 ./bin/bioTreatFASTQ.py -t 5:10 -i ./raw/PhIPseq_I1.fastq.gz -f ./raw/PhIPseq_R1.fastq.gz -b ./raw/Sample-Barcode.txt -o ./test_rawdata/ -y ./test
+Example 2:  trim nucleotides when demultiplexing, let say sequencing cycles is 50nt
+trim 10nt from 3-end or keep the first 40nt:                -r 40
+remove 10nt from 5-end and keep the left:                   -t 10
+trim 5nt from 5-end and keep 40nt and discard the left: 	-t 5 -r 35
 
 
-Example 3: Demultiplexing step can be skipped, and directly get sample_info.csv and variables.txt. Here *.fastq files were stored at ./test_rawdata/
+Example 3: The length of exported reads in FASTQ should be kept equal determined by the Sequencing Analyzer. In some cases, They are not because no quality filtering apply. We could specify -l 100nt. That option would discard all reads shorter than 100nt when demultiplexing.
+
+
+Example 4: Demultiplexing step can be skipped, and directly get sample_info.csv and variables.txt. Here *.fastq files were stored at ./test_rawdata/
 
 $ python3 ./bin/bioTreatFASTQ.py -o ./test_rawdata/ -y ./test
 
 
-Example 4: skip demultiplexing step, but trim fastq reads only. Here, all fastq files were put in the ./test_rawdata/, and the trimmed fastq files (remove 50nt from 3-end of each read) were saved into ./trim_rawdata/
+Example 5: skip demultiplexing step, but trim fastq reads only. Here, all fastq files were put in the ./test_rawdata/, and the trimmed fastq files (remove 40nt from 3-end of each read with 100nt) were saved into ./trim_rawdata/
 
-$ python3 ./bin/bioTreatFASTQ.py -t 0:40 -x ./test_rawdata/ -o./trim_rawdata/ -y ./test
+$ python3 ./bin/bioTreatFASTQ.py -r 60 -x ./test_rawdata/ -o./trim_rawdata/ -y ./test
+
 
 
 
