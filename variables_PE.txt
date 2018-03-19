@@ -1,0 +1,22 @@
+aligner_options=-a --best --strata -l 30 -v 0 --norc --nomaqround --sam-nohead
+dir_home=/scratch/groups/hlarman1/yuan/phip/
+dir_raw_data=/home-4/tyuan10@jhu.edu/work/yuan/rawdata_phip/phipseq00/
+dir_result=/home-4/tyuan10@jhu.edu/work/yuan/results_phip/phipseq00_PE/
+genome_index_name=20170623_PublicEpitope_reference50
+permutation_times=100
+phip_GP=no
+phip_zscores=yes
+phip_enrichment=no
+phip_alignment=yes
+phip_counting=yes
+phip_merge=yes
+protein_assoc=transcript_id
+quality_filter=13
+query_len=16
+sequencing_end=2
+statistical_items=NA
+threads_num=24
+tool_aligner=bowtie1
+unaligned_read_counts_filter=3
+zscore_threshold=10
+
